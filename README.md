@@ -1,3 +1,5 @@
+![Build](https://github.com/JaiswalShubham-1/Streamlocal/actions/workflows/build.yml/badge.svg)
+
 # StreamLocal
 
 A production-grade local media server built with Java and Spring Boot 4, demonstrating distributed systems concepts including CQRS, event-driven architecture, observability, and resilience patterns.
