@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: streamlocal
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/devdb
+    username: db_admin
+    password: MrAndMrsCharger@123
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  kafka:
+    admin:
+     fail-fast: true
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: streamlocal-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer

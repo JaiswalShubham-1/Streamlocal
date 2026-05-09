@@ -1,0 +1,75 @@
+# Environment variables - never commit
+.env
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Gradle (in case you ever switch)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Spring Boot
+*.jar
+*.war
+*.ear
+*.nar
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# IDE - IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# IDE - Eclipse / STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+
+# IDE - VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (if ever bind-mounted locally)
+docker-volumes/
+
+# FFmpeg transcode output (StreamLocal specific)
+output/
+
+# Testcontainers
+.testcontainers.properties
+
+# SonarQube
+.sonar/
+sonar-project.properties
+
+# JaCoCo coverage reports
+**/jacoco.exec
+**/site/jacoco/
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.zip
+*.tar.gz
