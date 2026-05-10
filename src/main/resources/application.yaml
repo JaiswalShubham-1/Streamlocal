@@ -44,3 +44,7 @@ spring:
       on-profile: dev
   server:
     address: 0.0.0.0
+
+streamlocal:
+  api:
+    key: ${STREAMLOCAL_API_KEY}

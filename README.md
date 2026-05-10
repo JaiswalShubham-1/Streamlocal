@@ -38,6 +38,11 @@ StreamLocal uses a CQRS (Command Query Responsibility Segregation) architecture 
 | Containerisation | Docker + Docker Compose |
 
 ---
+## Security
+
+All API endpoints are protected by a static API key passed as a Bearer token on every request:
+
+---
 
 ## Prerequisites
 
