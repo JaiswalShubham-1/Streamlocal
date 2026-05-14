@@ -1,15 +1,25 @@
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+
 spring:
   application:
     name: streamlocal
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 
   datasource:
     url: jdbc:postgresql://localhost:5433/devdb
-    username: db_admin
-    password: MrAndMrsCharger@123
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   data:
     redis:
@@ -18,7 +28,7 @@ spring:
 
   kafka:
     admin:
-     fail-fast: true
+      fail-fast: true
     bootstrap-servers: localhost:9092
     consumer:
       group-id: streamlocal-group
@@ -28,3 +38,23 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  server:
+    address: 127.0.0.1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  server:
+    address: 0.0.0.0
+
+streamlocal:
+  api:
+    key: ${STREAMLOCAL_API_KEY}

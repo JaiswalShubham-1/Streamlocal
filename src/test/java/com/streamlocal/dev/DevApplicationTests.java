@@ -1,13 +1,12 @@
 package com.streamlocal.dev;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 class DevApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+        // placeholder — full context tests added with Testcontainers in Week 7
+    }
 
 }

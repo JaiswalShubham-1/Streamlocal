@@ -1,3 +1,5 @@
+![Build](https://github.com/JaiswalShubham-1/Streamlocal/actions/workflows/build.yml/badge.svg)
+
 # StreamLocal
 
 A production-grade local media server built with Java and Spring Boot 4, demonstrating distributed systems concepts including CQRS, event-driven architecture, observability, and resilience patterns.
@@ -34,6 +36,11 @@ StreamLocal uses a CQRS (Command Query Responsibility Segregation) architecture 
 | Testing | JUnit 5 + Mockito + Testcontainers |
 | CI/CD | GitHub Actions |
 | Containerisation | Docker + Docker Compose |
+
+---
+## Security
+
+All API endpoints are protected by a static API key passed as a Bearer token on every request:
 
 ---
 
