@@ -1,15 +1,25 @@
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+
 spring:
   application:
     name: streamlocal
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/${POSTGRES_DB}?TimeZone=Asia/Kolkata
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://localhost:5433/devdb
+    username: db_admin
+    password: MrMrsCharger5704
+    driver-class-name: org.postgresql.Driver
 
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   data:
     redis:
@@ -23,11 +33,11 @@ spring:
     consumer:
       group-id: streamlocal-group
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serializers.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serializers.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
-      key-serializer: org.apache.kafka.common.serializers.StringSerializer
-      value-serializer: org.apache.kafka.common.serializers.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 ---
 spring:
