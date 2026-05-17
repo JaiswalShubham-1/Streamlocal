@@ -1,10 +1,7 @@
-logging:
-  level:
-    com.zaxxer.hikari: DEBUG
-
 spring:
   application:
     name: streamlocal
+
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
@@ -19,7 +16,14 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: none
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    create-schemas: false
+    schemas: streamlocal
+    default-schema: streamlocal
+    locations: classpath:db/migration
+    clean-disabled: true
 
   data:
     redis:
@@ -39,21 +43,17 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
----
-spring:
-  config:
-    activate:
-      on-profile: default
-  server:
-    address: 127.0.0.1
+server:
+  address: 127.0.0.1
 
 ---
 spring:
   config:
     activate:
       on-profile: dev
-  server:
-    address: 0.0.0.0
+
+server:
+  address: 0.0.0.0
 
 streamlocal:
   api:

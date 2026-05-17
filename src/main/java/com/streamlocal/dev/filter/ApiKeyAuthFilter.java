@@ -16,8 +16,7 @@ import java.io.IOException;
 @Component
 public class ApiKeyAuthFilter extends OncePerRequestFilter {
 
-    private static final String AUTH_HEADER = "Authorization";
-    private static final String BEARER_PREFIX = "Bearer ";
+    private static final String API_KEY_HEADER = "X-API-KEY";
 
     @Value("${streamlocal.api.key}")
     private String configuredApiKey;
@@ -28,19 +27,12 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String authHeader = request.getHeader(AUTH_HEADER);
+        String providedKey = request.getHeader(API_KEY_HEADER);
 
-        if (authHeader == null || authHeader.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing Authorization header");
+        if (providedKey == null || providedKey.isBlank()) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing API key");
             return;
         }
-
-        if (!authHeader.startsWith(BEARER_PREFIX)) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid Authorization format");
-            return;
-        }
-
-        String providedKey = authHeader.substring(BEARER_PREFIX.length());
 
         if (!configuredApiKey.equals(providedKey)) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid API key");
